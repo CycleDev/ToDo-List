@@ -1,5 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">ToDoList</string>
+    <string name="title_activity_to_do__list">ToDo List</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_new_todo_item_string">Add new ToDo item</string>
+    <string name="title_activity_add_to_do_item">AddToDoItem</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
