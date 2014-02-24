@@ -2,13 +2,11 @@ package nao.cycledev.todolist;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class ToDo_List extends Activity {
 	
@@ -28,19 +26,6 @@ public class ToDo_List extends Activity {
 		mAdapter = new ToDoListAdapter(getApplicationContext());
 		
 		ListView lvToDoList = (ListView)findViewById(R.id.lvToDoList);
-		lvToDoList.setFooterDividersEnabled(true);
-		
-		LayoutInflater li = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		TextView footerView = (TextView)li.inflate(R.layout.todo_footer, null, false);
-		lvToDoList.addFooterView(footerView);
-
-		footerView.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent addToDoItem = new Intent(ToDo_List.this, AddToDoItem.class);				
-				startActivityForResult(addToDoItem, ADD_TODO_ITEM_REQUEST);			}
-		});
-		
 		lvToDoList.setAdapter(mAdapter);
 	}
 	
@@ -51,7 +36,31 @@ public class ToDo_List extends Activity {
 			mAdapter.add(item);			 
 		}	
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.to_do__list, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.action_add_new_item:
+	        	Intent addToDoItem = new Intent(ToDo_List.this, AddToDoItem.class);				
+				startActivityForResult(addToDoItem, ADD_TODO_ITEM_REQUEST);	
+	            return true;
+	        case R.id.action_settings:
+	        	//TODO settings
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
 	@Override
 	public void onResume() {
 		super.onResume();
