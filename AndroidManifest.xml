@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="17" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +15,12 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="nao.cycledev.todolist.ToDo_List"
-            android:label="@string/title_activity_to_do__list" >
+            android:label="@string/title_activity_to_do__list">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="nao.cycledev.todolist.AddToDoItem"
